@@ -381,10 +381,54 @@ def eliminarResultado(id_resultado):
     json = response.json()
     return jsonify(json)
 
-################## Visualazación de reportes
+################## Visualazación de reportes #################
+@app.route("/resultado/total_votos",methods=['GET'])
+def getTotalVotosPorCandidato():
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-result"] + '/resultado/' + '/total_votos'
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
 
+@app.route("/resultado/candidato_mesa/mesa/<string:id_mesa>",methods=['GET'])
+def getTotalVotosCandidatoPorMesa(id_mesa):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-result"] + '/resultado/' + 'candidato_mesa/' + 'mesa/' + id_mesa
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
 
+@app.route("/resultado/votos_mesa",methods=['GET'])
+def getTotalVotosPorMesa():
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-result"] + '/resultado/' + 'votos_mesa'
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
 
+@app.route("/resultado/votos_partido",methods=['GET'])
+def getTotalVotosPorPartido():
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-result"] + '/resultado/' + 'votos_partido'
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/resultado/partido_mesa/mesa/<string:id_mesa>",methods=['GET'])
+def getTotalVotosPartidoPorMesa(id_mesa):
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-result"] + '/resultado/' + 'partido_mesa/' + 'mesa/' + id_mesa
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
+
+@app.route("/resultado/distribucion_porcentual",methods=['GET'])
+def getDistribucionPorcentual():
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-result"] + '/resultado/' + 'distribucion_porcentual'
+    response = requests.get(url, headers=headers)
+    json = response.json()
+    return jsonify(json)
 
 @app.route("/",methods=['GET'])
 def test():
